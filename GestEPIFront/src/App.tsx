@@ -1,27 +1,39 @@
-import logo from "./logo.svg";
-import "./App.css";
+// src/App.tsx
+import React, { useState } from 'react';
+import './App.css';
+import Home from './pages/Home';
+import EPIList from './pages/EPIList';
+import ControleList from './pages/ControleList';
 
 function App() {
-    console.log("");
+  const [currentPage, setCurrentPage] = useState('home');
 
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-            </header>
+  const renderPage = () => {
+    switch(currentPage) {
+      case 'epis':
+        return <EPIList />;
+      case 'controles':
+        return <ControleList />;
+      default:
+        return <Home setCurrentPage={setCurrentPage} />;
+    }
+  };
+
+  return (
+    <div className="App">
+      <nav className="navbar">
+        <div className="navbar-title">GestEPI</div>
+        <div className="navbar-links">
+          <button onClick={() => setCurrentPage('home')}>Accueil</button>
+          <button onClick={() => setCurrentPage('epis')}>EPIs</button>
+          <button onClick={() => setCurrentPage('controles')}>Contrôles</button>
         </div>
-    );
+      </nav>
+      <main className="content">
+        {renderPage()}
+      </main>
+    </div>
+  );
 }
 
 export default App;

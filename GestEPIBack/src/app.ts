@@ -3,7 +3,6 @@ import express from "express";
 import cors from "cors";
 import * as middlewares from "./middlewares";
 import routes from "./routes";
-import { testConnection } from "./config/database";
 
 require("dotenv").config();
 
@@ -13,19 +12,22 @@ const allowedOrigins = ["http://localhost:3000", "http://127.0.0.1:3000"];
 const options: cors.CorsOptions = {
   origin: allowedOrigins,
 };
-// Initializing express.
+
 const app = express();
-// Enable CORS
-app.use(cors(options));
-// Middleware to parse json throught requests.
+app.use(cors({
+  origin: ["http://localhost:3000", "http://127.0.0.1:3000"]
+}));
 app.use(express.json());
 
-// Routes API
+// Routes - CECI DOIT ÊTRE AVANT LES MIDDLEWARES D'ERREUR
 app.use('/api', routes);
 
-// Test de la connexion à la base de données
-testConnection();
+// Route de base pour vérifier que le serveur fonctionne
+app.get('/', (req, res) => {
+  res.json({ message: 'API GestEPI fonctionne correctement' });
+});
 
+// Middlewares d'erreur - DOIVENT ÊTRE APRÈS LES ROUTES
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 

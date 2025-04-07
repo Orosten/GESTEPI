@@ -1,0 +1,19 @@
+{
+  "name": "gestepiinterfaces-gabriel",
+  "version": "1.0.0",
+  "main": "dist/index.d.ts",
+  "types": "dist/types.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [],
+  "author": "[Votre Nom]",
+  "license": "ISC",
+  "description": "Interfaces pour le projet GestEPI",
+  "devDependencies": {
+    "typescript": "^5.6.3"
+  }
+}

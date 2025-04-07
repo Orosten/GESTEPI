@@ -2,6 +2,8 @@
 import express from "express";
 import cors from "cors";
 import * as middlewares from "./middlewares";
+import routes from "./routes";
+import { testConnection } from "./config/database";
 
 require("dotenv").config();
 
@@ -17,6 +19,12 @@ const app = express();
 app.use(cors(options));
 // Middleware to parse json throught requests.
 app.use(express.json());
+
+// Routes API
+app.use('/api', routes);
+
+// Test de la connexion à la base de données
+testConnection();
 
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);

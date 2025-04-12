@@ -1,10 +1,18 @@
 // src/pages/ControleList.tsx
 import React, { useState, useEffect } from 'react';
+import { Control, ControlStatus } from 'gestepiinterfaces-gabriel';
+
+interface ControleResponse extends Control {
+  // Ajout de champs supplémentaires qui pourraient être renvoyés par l'API
+  identifiantPersonnalise?: string;
+  marque?: string;
+  modele?: string;
+}
 
 const ControleList = () => {
-  const [controles, setControles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [controles, setControles] = useState<ControleResponse[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Fonction pour récupérer les données
@@ -17,7 +25,7 @@ const ControleList = () => {
         const data = await response.json();
         setControles(data);
         setLoading(false);
-      } catch (error) {
+      } catch (error: any) {
         console.error('Erreur de chargement:', error);
         setError('Impossible de charger les contrôles');
         setLoading(false);
@@ -27,7 +35,7 @@ const ControleList = () => {
     fetchControles();
   }, []);
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string | Date | undefined): string => {
     if (!dateString) return '-';
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR');
@@ -54,10 +62,10 @@ const ControleList = () => {
           {controles.length > 0 ? (
             controles.map((controle) => (
               <tr key={controle.id}>
-                <td>{formatDate(controle.date)}</td>
+                <td>{formatDate(controle.dateControl)}</td>
                 <td>{controle.epiId}</td>
                 <td>{controle.gestionnaire}</td>
-                <td>{controle.statut}</td>
+                <td>{controle.status}</td>
                 <td>{controle.remarques || '-'}</td>
               </tr>
             ))

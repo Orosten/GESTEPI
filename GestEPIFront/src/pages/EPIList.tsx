@@ -1,10 +1,16 @@
-// src/pages/EPIList.tsx
+
 import React, { useState, useEffect } from 'react';
+import { EPI } from 'gestepiinterfaces-gabriel'; // Importez l'interface si disponible
+
+interface EPIResponse extends Partial<EPI> {
+  // Ajout des champs spécifiques qui pourraient être différents dans la réponse API
+  identifiantPersonnalise?: string;
+}
 
 const EPIList = () => {
-  const [epis, setEpis] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [epis, setEpis] = useState<EPIResponse[]>([]); // Typage de l'état
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null); // Typage permettant une chaîne ou null
 
   useEffect(() => {
     // Fonction pour récupérer les données
@@ -27,7 +33,7 @@ const EPIList = () => {
     fetchEPIs();
   }, []);
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string | Date | undefined): string => {
     if (!dateString) return '-';
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR');
@@ -56,7 +62,7 @@ const EPIList = () => {
             epis.map((epi) => (
               <tr key={epi.id}>
                 <td>{epi.id}</td>
-                <td>{epi.identifiantPersonnalise}</td>a
+                <td>{epi.identifiantPersonnalise}</td>
                 <td>{epi.type}</td>
                 <td>{epi.marque}</td>
                 <td>{epi.modele}</td>

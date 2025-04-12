@@ -1,7 +1,11 @@
 // src/pages/Home.tsx
 import React from 'react';
 
-const Home = ({ setCurrentPage }) => {
+interface HomeProps {
+  setCurrentPage: (page: string) => void;
+}
+
+const Home = ({ setCurrentPage }: HomeProps) => {
   return (
     <div>
       <h1 className="page-title">Gestion des Équipements de Protection Individuelle</h1>

@@ -88,5 +88,16 @@ export default {
       console.error('Erreur lors de la suppression du contrôle:', error);
       res.status(500).json({ message: 'Erreur serveur' });
     }
+  },
+
+  async getControlAlertes(req: Request, res: Response) {
+    try {
+      const alertes = await controleService.getControlAlertes();
+      res.status(200).json(alertes);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des alertes de contrôle:', error);
+      res.status(500).json({ message: 'Erreur serveur' });
+    }
   }
+
 };

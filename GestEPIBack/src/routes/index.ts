@@ -19,5 +19,6 @@ router.get('/epis/:epiId/controles', controleController.getControlesByEPI);
 router.post('/controles', controleController.createControle);
 router.put('/controles/:id', controleController.updateControle);
 router.delete('/controles/:id', controleController.deleteControle);
+router.get('/controles/alertes', controleController.getControlAlertes);
 
 export default router;

@@ -134,3 +134,104 @@ button:hover {
 .page-title {
   margin-bottom: 20px;
 }
+
+.alerts-table {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.alert-urgent {
+  background-color: #ffdddd;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+}
+
+/* Styles pour les statuts */
+.status-operationnel {
+  color: green;
+}
+
+.status-a_reparer {
+  color: orange;
+}
+
+.status-mis_au_rebut {
+  color: red;
+}
+
+/* Styles pour les formulaires */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Styles pour les cartes d'informations */
+.epi-info {
+  margin: 20px 0;
+}
+
+.epi-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.info-row {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.info-label {
+  font-weight: bold;
+  margin-right: 10px;
+  min-width: 150px;
+}
+
+/* Styles pour les en-têtes de section */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+/* Styles pour la page de détails */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  margin-right: 10px;
+}

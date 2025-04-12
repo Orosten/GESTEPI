@@ -7,6 +7,7 @@ export default {
     let conn;
     try {
       conn = await pool.getConnection();
+      console.log(pool)
       const rows = await conn.query('SELECT * FROM epis');
       return rows;
     } catch (error) {

@@ -33,3 +33,31 @@ CREATE TABLE IF NOT EXISTS controles (
   updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (epiId) REFERENCES epis(id) ON DELETE CASCADE
 );
+
+-- insert initial
+
+INSERT INTO epis (
+  identifiantPersonnalise,
+  type,
+  marque,
+  modele,
+  numeroSerie,
+  taille,
+  couleur,
+  dateAchat,
+  dateFabrication,
+  dateMiseEnService,
+  periodiciteControle
+) VALUES (
+  'CORDE-001',
+  'CORDE',
+  'Petzl',
+  'Volta 9.2mm',
+  'PT2023456789',
+  '70m',
+  'Bleu',
+  '2023-01-15',
+  '2022-11-20',
+  '2023-02-01',
+  365
+);

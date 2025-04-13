@@ -1,19 +1,27 @@
-
 import React, { useState, useEffect } from 'react';
-import { EPI } from 'gestepiinterfaces-gabriel'; // Importez l'interface si disponible
 
-interface EPIResponse extends Partial<EPI> {
-  // Ajout des champs spécifiques qui pourraient être différents dans la réponse API
-  identifiantPersonnalise?: string;
+// Interface pour typer les EPIs
+interface EPIData {
+  id: number;
+  identifiantPersonnalise: string;
+  type: string;
+  marque: string;
+  modele: string;
+  numeroSerie: string;
+  dateAchat: string;
+  taille?: string;
+  couleur?: string;
+  dateFabrication?: string;
+  dateMiseEnService?: string;
+  periodiciteControle?: number;
 }
 
-const EPIList = () => {
-  const [epis, setEpis] = useState<EPIResponse[]>([]); // Typage de l'état
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null); // Typage permettant une chaîne ou null
+const EPIList: React.FC = () => {
+  const [epis, setEpis] = useState<EPIData[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Fonction pour récupérer les données
     const fetchEPIs = async () => {
       try {
         const response = await fetch('http://localhost:5500/api/epis');
@@ -33,7 +41,7 @@ const EPIList = () => {
     fetchEPIs();
   }, []);
 
-  const formatDate = (dateString: string | Date | undefined): string => {
+  const formatDate = (dateString: string): string => {
     if (!dateString) return '-';
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR');
